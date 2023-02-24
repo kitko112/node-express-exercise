@@ -1,0 +1,70 @@
+openapi: 3.0.3
+info:
+  title: Vehicle Api endpoints
+servers:
+  - url: https://localhost:8080
+tags:
+  - name: Vehicle
+    description: Everything about vehicle
+paths:
+  /vehicles/{vehicleId}:
+    get:
+      tags:
+        - vehicle
+      summary: Find vehicle by id and timestamp
+      parameters:
+        - name: vehicleId
+          in: path
+          description: ID of vehicle
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: timestamp
+          in: query
+          description: Timestamp specify the selling state of particular moment
+          required: true
+          schema:
+            type: string
+            default: '2022-09-11 09:11:45+00'
+      responses:
+        '200':
+          description: successful request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Vehicle'          
+        '404':
+          description: Vehicle not found
+        '400':
+          description: Bad request
+
+components:
+  schemas:
+    Vehicle:
+      required:
+        - id
+        - make
+        - model
+        - state
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 1
+        make:
+          type: string
+          example: BMW
+        model:
+          type: string
+          example: X1
+        state:
+          type: string
+          description: selling status of the vehicle
+          example: quoted
+          enum:
+            - quoted
+            - selling
+            - sold
+    
