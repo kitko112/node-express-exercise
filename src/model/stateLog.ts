@@ -11,7 +11,3 @@ export class StateLog {
     timestamp = timestamp;
   }
 }
-
-export interface IStateLogRepository {
-  getVehicleLastStateLogAt(vehicleId: number, timestamp: Date): StateLog;
-}

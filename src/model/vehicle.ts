@@ -13,7 +13,3 @@ export class Vehicle {
     this.state = state;
   }
 }
-
-export interface IVehicleRepository {
-  getById(id: number): Vehicle;
-}
