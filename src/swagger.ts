@@ -3,7 +3,7 @@ import swaggerUi from "swagger-ui-express";
 import { readFileSync } from "fs";
 import { parse } from "yaml";
 
-const file = readFileSync("./open-api.yml", "utf8");
+const file = readFileSync("./openapi.yml", "utf8");
 const swaggerDocument = parse(file);
 
 export const setupSwaggerUi = (app: Express) =>
