@@ -1,12 +1,12 @@
 import { Vehicle } from "../model/vehicle";
 
-export type GetVehicleParams = {
+export type GetVehicleQueryParams = {
   stateUpdatedAt?: Date;
 };
 
 export interface IVehicleService {
   getVehicle(
     id: number,
-    params: GetVehicleParams
+    params: GetVehicleQueryParams
   ): Promise<Vehicle | undefined>;
 }

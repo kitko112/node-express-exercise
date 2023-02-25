@@ -1,7 +1,7 @@
 import { IStateLogRepository } from "../repository/IStateLogRepository";
 import { IVehicleRepository } from "../repository/IVehichleRepository";
 import { Vehicle } from "../model/vehicle";
-import { GetVehicleParams, IVehicleService } from "./IVehicleService";
+import { GetVehicleQueryParams, IVehicleService } from "./IVehicleService";
 
 export class VehicleService implements IVehicleService {
   private _vehicleRepository: IVehicleRepository;
@@ -17,7 +17,7 @@ export class VehicleService implements IVehicleService {
 
   async getVehicle(
     id: number,
-    { stateUpdatedAt }: GetVehicleParams
+    { stateUpdatedAt }: GetVehicleQueryParams
   ): Promise<Vehicle | undefined> {
     const vehicle = await this._vehicleRepository.getById(id);
     if (vehicle) {
