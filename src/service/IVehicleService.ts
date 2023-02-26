@@ -1,8 +1,5 @@
+import { GetVehicleQueryParams } from "../model/types";
 import { Vehicle } from "../model/vehicle";
-
-export type GetVehicleQueryParams = {
-  stateUpdatedAt?: Date;
-};
 
 export interface IVehicleService {
   getVehicle(

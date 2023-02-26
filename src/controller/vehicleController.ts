@@ -1,10 +1,8 @@
-import {
-  GetVehicleQueryParams,
-  IVehicleService,
-} from "../service/IVehicleService";
-import { Request, Response, NextFunction } from "express";
+import { IVehicleService } from "../service/IVehicleService";
+import { Response, NextFunction } from "express";
 import { Vehicle } from "../model/vehicle";
 import { HttpException } from "../httpException";
+import { GetVehicleRequest } from "../model/types";
 
 export class VehicleController {
   private _vehicleService: IVehicleService;
@@ -15,7 +13,7 @@ export class VehicleController {
 
   // TODO: set api test to verify the response
   async getVehicle(
-    req: Request<{ id: number }, {}, {}, GetVehicleQueryParams>,
+    req: GetVehicleRequest,
     res: Response<Vehicle>,
     next: NextFunction
   ) {

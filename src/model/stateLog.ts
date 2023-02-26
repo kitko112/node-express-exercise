@@ -6,8 +6,8 @@ export class StateLog {
   timestamp: Date;
 
   constructor(id: number, state: State, timestamp: Date) {
-    id = id;
-    state = state;
-    timestamp = timestamp;
+    this.id = id;
+    this.state = state;
+    this.timestamp = timestamp;
   }
 }

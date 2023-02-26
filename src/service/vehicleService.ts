@@ -1,7 +1,8 @@
 import { IStateLogRepository } from "../repository/IStateLogRepository";
 import { IVehicleRepository } from "../repository/IVehicleRepository";
 import { Vehicle } from "../model/vehicle";
-import { GetVehicleQueryParams, IVehicleService } from "./IVehicleService";
+import { IVehicleService } from "./IVehicleService";
+import { GetVehicleQueryParams } from "../model/types";
 
 export class VehicleService implements IVehicleService {
   private _vehicleRepository: IVehicleRepository;
