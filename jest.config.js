@@ -6,4 +6,5 @@ module.exports = {
   fakeTimers: {
     enableGlobally: true,
   },
+  runner: "groups",
 };
