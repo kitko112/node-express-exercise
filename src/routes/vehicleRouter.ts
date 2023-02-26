@@ -1,8 +1,12 @@
 import { Router } from "express";
-import { VehicleController } from "../controller/vehicleController";
+import compose from "../compositionRoot";
+import { GetVehicleRequest } from "../model/types";
 
 const vehicleRouter = Router();
+const { vehicleController } = compose();
 
-vehicleRouter.get("/vehicles/:id", new VehicleController({} as any).getVehicle);
+vehicleRouter.get("/vehicles/:id", (req: GetVehicleRequest, res, next) =>
+  vehicleController.getVehicle(req, res, next)
+);
 
 export { vehicleRouter };
