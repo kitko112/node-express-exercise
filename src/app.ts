@@ -1,3 +1,6 @@
+import dotenv from "dotenv";
+dotenv.config();
+
 import express from "express";
 import { setupSwaggerUi } from "./swagger";
 import * as OpenApiValidator from "express-openapi-validator";
@@ -19,7 +22,6 @@ app.use(
 app.use(vehicleRouter);
 
 app.use("/", (err, req, res, next) => {
-  // format error
   const { message, errors } = err;
   res.status(err.status || 500).json({ message, errors });
 });
