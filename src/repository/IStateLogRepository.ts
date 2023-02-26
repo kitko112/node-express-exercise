@@ -4,5 +4,5 @@ export interface IStateLogRepository {
   getVehicleLastStateUpdatedAt(
     vehicleId: number,
     stateUpdatedAt: Date
-  ): StateLog;
+  ): Promise<StateLog | undefined>;
 }

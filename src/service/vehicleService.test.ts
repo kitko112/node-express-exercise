@@ -1,7 +1,7 @@
 import { StateLog } from "../model/stateLog";
 import { Vehicle } from "../model/vehicle";
 import { IStateLogRepository } from "../repository/IStateLogRepository";
-import { IVehicleRepository } from "../repository/IVehichleRepository";
+import { IVehicleRepository } from "../repository/IVehicleRepository";
 import { VehicleService } from "./vehicleService";
 
 describe("Vehicle Service Test Suite", () => {

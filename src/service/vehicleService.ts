@@ -1,5 +1,5 @@
 import { IStateLogRepository } from "../repository/IStateLogRepository";
-import { IVehicleRepository } from "../repository/IVehichleRepository";
+import { IVehicleRepository } from "../repository/IVehicleRepository";
 import { Vehicle } from "../model/vehicle";
 import { GetVehicleQueryParams, IVehicleService } from "./IVehicleService";
 
@@ -27,7 +27,7 @@ export class VehicleService implements IVehicleService {
             id,
             stateUpdatedAt
           );
-        vehicle.state = stateLog.state;
+        vehicle.state = stateLog?.state ?? vehicle.state;
       }
       return vehicle;
     }
