@@ -21,10 +21,9 @@ export class VehicleRepository implements IVehicleRepository {
         `,
       values: [id],
     };
-    const client = await this._dbConnectionPool.connect();
     try {
-      const queryResult = await client.query(query);
-      const [row] = queryResult?.rows ?? [];
+      const { rows } = await this._dbConnectionPool.query(query);
+      const [row] = rows ?? [];
 
       if (row) {
         const { id, make, model, state } = row;
@@ -34,9 +33,8 @@ export class VehicleRepository implements IVehicleRepository {
 
       return undefined;
     } catch (e) {
+      console.error(e);
       throw e;
-    } finally {
-      await client.release();
     }
   }
 }

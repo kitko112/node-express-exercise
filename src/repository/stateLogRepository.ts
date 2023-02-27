@@ -22,7 +22,7 @@ export class StateLogRepository implements IStateLogRepository {
         WHERE
           "vehicleId" = $1::integer
         AND
-          "timestamp" <= $2::date
+          "timestamp" <= $2::timestamptz
         ORDER BY
           "timestamp"
         DESC
@@ -30,10 +30,9 @@ export class StateLogRepository implements IStateLogRepository {
       `,
       values: [vehicleId, stateUpdatedAt],
     };
-    const client = await this._dbConnectionPool.connect();
     try {
-      const queryResult = await client.query(query);
-      const [row] = queryResult?.rows ?? [];
+      const { rows } = await this._dbConnectionPool.query(query);
+      const [row] = rows ?? [];
 
       if (row) {
         const { vehicleId, state, timestamp } = row;
@@ -43,9 +42,8 @@ export class StateLogRepository implements IStateLogRepository {
 
       return undefined;
     } catch (e) {
+      console.error(e);
       throw e;
-    } finally {
-      await client.release();
     }
   }
 }
