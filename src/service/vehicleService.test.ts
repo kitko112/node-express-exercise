@@ -47,6 +47,26 @@ describe("Vehicle Service Test Suite", () => {
       expect(vehicle).toEqual(mockVehicle);
     });
 
+    it("should return vehicle detail with original state when state log is not found", async () => {
+      const mockVehicleRepository: IVehicleRepository = {
+        getById: jest.fn().mockResolvedValue(mockVehicle),
+      };
+      const mockStateLogRepository: IStateLogRepository = {
+        getVehicleLastStateUpdatedAt: jest.fn().mockResolvedValue(undefined),
+      };
+
+      const vehicleService = new VehicleService(
+        mockVehicleRepository,
+        mockStateLogRepository
+      );
+      const vehicle = await vehicleService.getVehicle(1, {
+        stateUpdatedAt: mockDatetime,
+      });
+
+      expect(mockStateLogRepository.getVehicleLastStateUpdatedAt).toBeCalled();
+      expect(vehicle).toEqual(mockVehicle);
+    });
+
     it("should return undefined when vehicle is not found", async () => {
       const mockVehicleRepository: IVehicleRepository = {
         getById: jest.fn().mockResolvedValue(undefined),
