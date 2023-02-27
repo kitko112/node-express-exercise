@@ -11,18 +11,17 @@ export class VehicleController {
     this._vehicleService = vehicleService;
   }
 
-  // TODO: set api test to verify the response
   async getVehicle(
-    req: GetVehicleRequest,
+    { params, query }: GetVehicleRequest,
     res: Response<Vehicle>,
     next: NextFunction
   ) {
-    const id = req.params.id;
-    const stateUpdatedAt = req.query.stateUpdatedAt;
+    const { id } = params;
+    const { stateUpdatedAt } = query;
 
     try {
       const vehicle = await this._vehicleService.getVehicle(id, {
-        stateUpdatedAt,
+        stateUpdatedAt: stateUpdatedAt ? new Date(stateUpdatedAt) : undefined,
       });
 
       if (vehicle) {

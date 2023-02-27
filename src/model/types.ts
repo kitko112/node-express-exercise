@@ -8,5 +8,5 @@ export type GetVehicleRequest = Request<
   { id: number },
   {},
   {},
-  GetVehicleQueryParams
+  { stateUpdatedAt?: string }
 >;
